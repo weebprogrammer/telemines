@@ -1,18 +1,20 @@
 namespace Minesweeper;
 
 
-class Board {
+class Board 
+{
 	private Cell[] cells;
-	public int x_size;
-	public int y_size;
-	public int length;
+	
+	public int X { get; }
+	public int Y { get; }
+	public int Length { get; }
 
-	public Board(int x, int y) {
-		x_size = x;
-		y_size = y;
-		length = x * y;
+	public Board(int x, int y) 
+	{
+		X = x;
+		Y = y;
+		Length = X * Y;
 
-		cells = new Cell[length];
-		
+		cells = new Cell[Length];
 	}
 }
