@@ -10,7 +10,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        TelegramBotClient client = new TelegramBotClient("6590579648:AAGZdelqyu07O5n1rEIJI7THU-v3dphOnvo");
+        TelegramBotClient client = new TelegramBotClient("token");
         client.StartReceiving(Update, Error);
         Console.ReadLine();
     }
