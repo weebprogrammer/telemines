@@ -5,12 +5,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using telemines.TelegramSapper;
 
 class Program
 {
     static void Main(string[] args)
     {
-        TelegramBotClient client = new TelegramBotClient("token");
+        TelegramBotClient client = new TelegramBotClient("6590579648:AAGZdelqyu07O5n1rEIJI7THU-v3dphOnvo");
         client.StartReceiving(Update, Error);
         Console.ReadLine();
     }
@@ -23,47 +24,26 @@ class Program
             return;
 
         Console.WriteLine(message.Chat.FirstName + "\t || \t" + message.Text);
+        QueryManager manager = new QueryManager(client, message);
 
+        // Start
         if (message.Text.ToLower().Contains("/start"))
-        {
-            await client.SendTextMessageAsync(message.Chat.Id, "Для ознакомления напишите /help");
-            return;
-        }
+            await Task.Run(() => manager.Query(new StartQuery()));
+        // GameStart
         else if (message.Text.ToLower().Contains("/gamestart"))
-        {
-            await client.SendTextMessageAsync(message.Chat.Id, "Игра началась!");
-            return;
-        }
+            await Task.Run(() => manager.Query(new GameStartQuery()));
+        // GameStop
         else if (message.Text.ToLower().Contains("/gamestop"))
-        {
-            await client.SendTextMessageAsync(message.Chat.Id, "Игра закончилась!");
-            return;
-        }
+            await Task.Run(() => manager.Query(new GameStopQuery()));
+        // Choice
         else if (message.Text.ToLower().Contains("/choice"))
-        {
-            await client.SendTextMessageAsync(message.Chat.Id, "Выбрана клетка ...");
-            return;
-        }
+            await Task.Run(() => manager.Query(new ChoiceQuery()));
+        // Mark
         else if (message.Text.ToLower().Contains("/mark"))
-        {
-            await client.SendTextMessageAsync(message.Chat.Id, "Выбрана марка ...");
-            return;
-        }
+            await Task.Run(() => manager.Query(new MarkQuery()));
+        // Help
         else if (message.Text.ToLower().Contains("/help"))
-        {
-            string helpMessage = "";
-
-            helpMessage += "/gamestart - начать игру\n";
-            helpMessage += "/gamestop - завершить игру\n";
-            helpMessage += "/choice column <value> - выборать столбец\n";
-            helpMessage += "/choice row <value> - выборать строку\n";
-            helpMessage += "/mark column <value> - выборать столбец\n";
-            helpMessage += "/mark row <value> - выборать строку\n";
-
-            await client.SendTextMessageAsync(message.Chat.Id, helpMessage);
-            return;
-        }
-
+            await Task.Run(() => manager.Query(new HelpQuery()));
     }
 
     async static Task Error(ITelegramBotClient client, Exception exception, CancellationToken token)
