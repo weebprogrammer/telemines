@@ -1,6 +1,7 @@
 ﻿namespace telemines;
 
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot;
@@ -16,6 +17,16 @@ class Program
         Console.ReadLine();
     }
 
+    private static void RegisterQuery<QueryT>(string name, ref Dictionary<string, object> QueriesTable) where QueryT : new()
+    {
+        QueriesTable.Add(name, new QueryT());
+    }
+
+    private static IQuery GetQueryObject(string name, ref Dictionary<string, object> QueriesTable)
+    {
+        return (IQuery)QueriesTable[name];
+    }
+
     async static Task Update(ITelegramBotClient client, Update update, CancellationToken token)
     {
         Message? message = update.Message;
@@ -25,25 +36,18 @@ class Program
 
         Console.WriteLine(message.Chat.FirstName + "\t || \t" + message.Text);
         QueryManager manager = new QueryManager(client, message);
+        var QueriesTable = new Dictionary<string, object>();
 
-        // Start
-        if (message.Text.ToLower().Contains("/start"))
-            await Task.Run(() => manager.Query(new StartQuery()));
-        // GameStart
-        else if (message.Text.ToLower().Contains("/gamestart"))
-            await Task.Run(() => manager.Query(new GameStartQuery()));
-        // GameStop
-        else if (message.Text.ToLower().Contains("/gamestop"))
-            await Task.Run(() => manager.Query(new GameStopQuery()));
-        // Choice
-        else if (message.Text.ToLower().Contains("/choice"))
-            await Task.Run(() => manager.Query(new ChoiceQuery()));
-        // Mark
-        else if (message.Text.ToLower().Contains("/mark"))
-            await Task.Run(() => manager.Query(new MarkQuery()));
-        // Help
-        else if (message.Text.ToLower().Contains("/help"))
-            await Task.Run(() => manager.Query(new HelpQuery()));
+        RegisterQuery<StartQuery>("/start", ref QueriesTable);
+        RegisterQuery<GameStartQuery>("/gamestart", ref QueriesTable);
+        RegisterQuery<GameStopQuery>("/gamestop", ref QueriesTable);
+        RegisterQuery<ChoiceQuery>("/choice", ref QueriesTable);
+        RegisterQuery<MarkQuery>("/mark", ref QueriesTable);
+        RegisterQuery<HelpQuery>("/help", ref QueriesTable);
+
+        string m = message.Text.ToLower();
+        
+        await Task.Run(() => manager.Query(GetQueryObject(m, ref QueriesTable)));
     }
 
     async static Task Error(ITelegramBotClient client, Exception exception, CancellationToken token)
