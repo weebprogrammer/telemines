@@ -1,6 +1,7 @@
 ﻿namespace telemines;
 
 using System;
+using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot;
@@ -26,28 +27,35 @@ class Program
         Console.WriteLine(message.Chat.FirstName + "\t || \t" + message.Text);
         QueryManager manager = new QueryManager(client, message);
 
-        // Start
-        if (message.Text.ToLower().Contains("/start"))
-            await Task.Run(() => manager.Query(new StartQuery()));
-        // GameStart
-        else if (message.Text.ToLower().Contains("/gamestart"))
-            await Task.Run(() => manager.Query(new GameStartQuery()));
-        // GameStop
-        else if (message.Text.ToLower().Contains("/gamestop"))
-            await Task.Run(() => manager.Query(new GameStopQuery()));
-        // Choice
-        else if (message.Text.ToLower().Contains("/choice"))
-            await Task.Run(() => manager.Query(new ChoiceQuery()));
-        // Mark
-        else if (message.Text.ToLower().Contains("/mark"))
-            await Task.Run(() => manager.Query(new MarkQuery()));
-        // Help
-        else if (message.Text.ToLower().Contains("/help"))
-            await Task.Run(() => manager.Query(new HelpQuery()));
+        await Task.Run(() => manager.Query(CommandType(message.Text.ToLower())));
     }
 
     async static Task Error(ITelegramBotClient client, Exception exception, CancellationToken token)
     {
         
+    }
+
+    public static IQuery CommandType(string command)
+    {
+        // Start
+        if (command.Contains("/start"))
+            return new StartQuery();
+        // GameStart
+        else if (command.Contains("/gamestart"))
+            return new GameStartQuery();
+        // GameStop
+        else if (command.Contains("/gamestop"))
+            return new GameStopQuery();
+        // Choice
+        else if (command.Contains("/choice"))
+            return new ChoiceQuery();
+        // Mark
+        else if (command.Contains("/mark"))
+            return new MarkQuery();
+        // Help
+        else if (command.Contains("/help"))
+            return new HelpQuery();
+
+        return new HelpQuery();
     }
 }
