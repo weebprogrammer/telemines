@@ -1,7 +1,8 @@
-namespace Minesweeper;
+namespace telemines.Minesweeper;
 
 
-class Board {
+class Board 
+{
 	private Cell[] cells;
 	public int x_size;
 	public int y_size;
@@ -13,6 +14,11 @@ class Board {
 		length = x * y;
 
 		cells = new Cell[length];
-		
 	}
+
+	public Cell GetCellAtPosition(int x_position, int y_position) {
+		return cells[x_position * y_position];
+	}
+
+	
 }
