@@ -13,7 +13,7 @@ class Board
 	{
 		Height = x;
 		Width = y;
-		Length = X * Y;
+		Length = Height * Width;
 
 		cells = new Cell[Length];
 	}
