@@ -1,12 +1,13 @@
 namespace telemines.Minesweper;
 
 
-private enum CellType {
+enum CellType {
     Mine, 
     Num,
 }
 
-class Cell
+struct Cell
 {
-    
+    public CellType type;
+    public int? value; 
 }
