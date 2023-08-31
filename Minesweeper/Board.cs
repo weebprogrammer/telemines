@@ -11,8 +11,8 @@ class Board
 
 	public Board(int x, int y) 
 	{
-		X = x;
-		Y = y;
+		Height = x;
+		Width = y;
 		Length = X * Y;
 
 		cells = new Cell[Length];
