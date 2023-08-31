@@ -1,27 +1,25 @@
-﻿using telemines.Minesweper;
+﻿namespace telemines;
 
-namespace telemines;
+using telemines.Minesweeper;
+
 
 class Program
 {
     static void Main(string[] args)
     {
         try {
-            var board = new Board(4, 4);
-            for (int i = 0; i < board.Width; ++i) {
-                for (int j = 0; i < board.Height; ++i) {
-                    board.SetCellAtPosition(i, j, CellType.Num, 4);
-                }
-            }
+            var board = new Board(4,4);
+            board.ForEachCell((cell) => {
+                cell.type = CellType.Num;
+                cell.value = 5;
+                return cell;
+            });
 
-            for (int i = 0; i < board.Width; ++i) {
-                for (int j = 0; i < board.Height; ++i) {
-                    Cell cell = board.GetCellAtPosition(i, j);
-                    Console.Writeline("{0}", cell.value);
-                }
-            }
+            board.ForEachCell((cell) => {
+                
+            });
         } catch(Exception e) {
-            Console.Writeline(e.ToString());
+            Console.WriteLine(e.ToString());
         }
     }
 }

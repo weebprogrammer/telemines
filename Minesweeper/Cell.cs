@@ -1,4 +1,4 @@
-namespace telemines.Minesweper;
+namespace telemines.Minesweeper;
 
 
 public enum CellType {
