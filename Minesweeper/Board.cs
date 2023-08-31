@@ -5,15 +5,15 @@ class Board
 {
 	private Cell[] cells;
 	
-	public int X { get; }
-	public int Y { get; }
+	public int Height { get; }
+	public int Width { get; }
 	public int Length { get; }
 
 	public Board(int x, int y) 
 	{
-		X = x;
-		Y = y;
-		Length = X * Y;
+		Height = x;
+		Width = y;
+		Length = Height * Width;
 
 		cells = new Cell[Length];
 	}
