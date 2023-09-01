@@ -1,0 +1,15 @@
+D:\code\telemines\obj\Debug\net7.0\telemines.csproj.AssemblyReference.cache
+D:\code\telemines\obj\Debug\net7.0\telemines.GeneratedMSBuildEditorConfig.editorconfig
+D:\code\telemines\obj\Debug\net7.0\telemines.AssemblyInfoInputs.cache
+D:\code\telemines\obj\Debug\net7.0\telemines.AssemblyInfo.cs
+D:\code\telemines\obj\Debug\net7.0\telemines.csproj.CoreCompileInputs.cache
+D:\code\telemines\bin\Debug\net7.0\telemines.exe
+D:\code\telemines\bin\Debug\net7.0\telemines.deps.json
+D:\code\telemines\bin\Debug\net7.0\telemines.runtimeconfig.json
+D:\code\telemines\bin\Debug\net7.0\telemines.dll
+D:\code\telemines\bin\Debug\net7.0\telemines.pdb
+D:\code\telemines\obj\Debug\net7.0\telemines.dll
+D:\code\telemines\obj\Debug\net7.0\refint\telemines.dll
+D:\code\telemines\obj\Debug\net7.0\telemines.pdb
+D:\code\telemines\obj\Debug\net7.0\telemines.genruntimeconfig.cache
+D:\code\telemines\obj\Debug\net7.0\ref\telemines.dll
