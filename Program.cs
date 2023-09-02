@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using telemines.TelegramSapper;
+using telemines.TelegramSapper.Query;
 
 class Program
 {
@@ -26,8 +27,9 @@ class Program
 
         Console.WriteLine(message.Chat.FirstName + "\t || \t" + message.Text);
         QueryManager manager = new QueryManager(client, message);
+        IQuery type = CommandType(message.Text.ToLower());
 
-        await Task.Run(() => manager.Query(CommandType(message.Text.ToLower())));
+        await Task.Run(() => manager.Query(type));
     }
 
     async static Task Error(ITelegramBotClient client, Exception exception, CancellationToken token)
@@ -56,6 +58,6 @@ class Program
         else if (command.Contains("/help"))
             return new HelpQuery();
 
-        return new HelpQuery();
+        return new StartQuery();
     }
 }

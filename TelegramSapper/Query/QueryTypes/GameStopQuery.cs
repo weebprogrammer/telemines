@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using Telegram.Bot.Types;
 using Telegram.Bot;
 
-namespace telemines.TelegramSapper
+namespace telemines.TelegramSapper.Query
 {
-    internal class GameStartQuery : IQuery
+    internal class GameStopQuery : IQuery
     {
         public void Query(ITelegramBotClient client, Message? message)
         {
-            client.SendTextMessageAsync(message.Chat.Id, "Игра началась!");
+            client.SendTextMessageAsync(message.Chat.Id, "Игра закончилась!");
         }
     }
 }

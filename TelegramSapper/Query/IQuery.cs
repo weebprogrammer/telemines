@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
-namespace telemines.TelegramSapper
+namespace telemines.TelegramSapper.Query
 {
     internal interface IQuery
     {

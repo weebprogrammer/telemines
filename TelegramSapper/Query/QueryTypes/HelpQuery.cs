@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Telegram.Bot.Types;
 using Telegram.Bot;
 
-namespace telemines.TelegramSapper
+namespace telemines.TelegramSapper.Query
 {
     internal class HelpQuery : IQuery
     {
-        public void Query(ITelegramBotClient client, Message? message) 
+        public void Query(ITelegramBotClient client, Message? message)
         {
             string helpMessage = "";
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Telegram.Bot.Types;
 using Telegram.Bot;
 
-namespace telemines.TelegramSapper
+namespace telemines.TelegramSapper.Query
 {
     internal class ChoiceQuery : IQuery
     {
