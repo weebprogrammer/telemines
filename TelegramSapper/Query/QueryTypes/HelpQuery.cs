@@ -16,10 +16,8 @@ namespace telemines.TelegramSapper.Query
 
             helpMessage += "/gamestart - начать игру\n";
             helpMessage += "/gamestop - завершить игру\n";
-            helpMessage += "/choice column <value> - выборать столбец\n";
-            helpMessage += "/choice row <value> - выборать строку\n";
-            helpMessage += "/mark column <value> - выборать столбец\n";
-            helpMessage += "/mark row <value> - выборать строку\n";
+            helpMessage += "/choice <value> - выбрать клетку\n";
+            helpMessage += "/mark <value> - выбрать марку\n";
 
             client.SendTextMessageAsync(message.Chat.Id, helpMessage);
         }

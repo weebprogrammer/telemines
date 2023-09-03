@@ -12,7 +12,16 @@ namespace telemines.TelegramSapper.Query
     {
         public void Query(ITelegramBotClient client, Message? message)
         {
-            client.SendTextMessageAsync(message.Chat.Id, "Выбрана марка ...");
+            if (message.Text.Length < 9)
+            {
+                client.SendTextMessageAsync(message.Chat.Id, "Неправильный ввод!");
+                return;
+            }
+
+            char x = message.Text[8];
+            char y = message.Text[9];
+
+            client.SendTextMessageAsync(message.Chat.Id, "Выбрана марка - " + x + ", " + y);
         }
     }
 }
