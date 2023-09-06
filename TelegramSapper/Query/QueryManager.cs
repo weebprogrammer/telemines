@@ -10,8 +10,8 @@ namespace telemines.TelegramSapper.Query
 {
     internal class QueryManager
     {
-        ITelegramBotClient client;
-        Message? message;
+        private readonly ITelegramBotClient client;
+        private readonly Message? message;
 
         public QueryManager(ITelegramBotClient client, Message? message)
         {
