@@ -5,8 +5,8 @@ public class Board
 {
 	private Cell[] cells;
 	
-	public int Height { get; }
-	public int Width { get; }
+	public int Height { get; init; }
+	public int Width { get; init; }
 
 	public Board(int x, int y) 
 	{
@@ -16,15 +16,15 @@ public class Board
 		cells = new Cell[Height * Width];
 	}
 
-	public Cell GetCellAtPosition(int x_position, int y_position)
+	public Cell GetCellPosition(int x, int y)
 	{
-		return cells[(x_position * y_position)-1];
+		return cells[(x * y)-1];
 	}
 
-	public void SetCellAtPosition(int x_position, int y_position, CellType type, int? value = null)
+	public void SetCellPosition(int x, int y, CellType type, int? value = null)
 	{
-		cells[(x_position * y_position)-1].type = type;
-		cells[(x_position * y_position)-1].value = value;
+		cells[(x * y)-1].type = type;
+		cells[(x * y)-1].value = value;
 	}
 
 	public void ForEachCell(Func<Cell, Cell> Action)
